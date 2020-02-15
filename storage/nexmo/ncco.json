@@ -1,0 +1,12 @@
+[
+    {
+        "action" : "talk",
+        "text" : "Press 1 to hear Taylor's latest tweet. Press 2 to listen to the latest Laravel Podcast",
+        "bargeIn" : true
+    },
+    {
+        "action" : "input",
+        "eventUrl" : ["http://8cc9708d.ngrok.io/nexmo/manu"],
+        "maxDigits" : 1
+    }
+]
