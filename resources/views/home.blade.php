@@ -26,7 +26,7 @@
                                     <td>{{$contact->name}}</td>
                                     <td>{{$contact->phone}}</td>
                                     <td>{{$contact->massage}}</td>
-                                    <td><a href="{{$contact->url}}">{{$contact->url}}</a></td>
+                                    <td><a target="_blank" href="{{$contact->url}}">{{$contact->url}}</a></td>
                                 </tr>
                                 @empty
                                 <tr class="text-center">

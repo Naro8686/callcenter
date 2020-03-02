@@ -14,3 +14,4 @@ yarn-error.log
 .idea
 ngrok.exe
 error_log
+app/Http/Controllers/Ami.php
