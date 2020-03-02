@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    {{dd($url)}}
     <div class="container">
         <div class="row justify-content-center">
             @include('include.url')
