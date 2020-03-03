@@ -17,16 +17,24 @@
                                 <th scope="col">Номер телефона</th>
                                 <th scope="col">Комментарии</th>
                                 <th scope="col">URL</th>
+                                <th scope="col"></th>
                             </tr>
                             </thead>
                             <tbody>
                             @forelse($contacts as $contact)
                                 <tr>
-                                    <th scope="row">{{$contact->id}}</th>
+                                    <th scope="row">{{$loop->iteration}}</th>
                                     <td>{{$contact->name}}</td>
                                     <td>{{$contact->phone}}</td>
                                     <td>{{$contact->massage}}</td>
                                     <td><a target="_blank" href="{{$contact->url}}">{{$contact->url}}</a></td>
+                                    <td>
+                                        @if($contact->status)
+                                            <h6><span class="badge badge-success">новый</span></h6>
+                                            @else
+                                            <h6><span class="badge badge-secondary">старый</span></h6>
+                                        @endif
+                                    </td>
                                 </tr>
                                 @empty
                                 <tr class="text-center">

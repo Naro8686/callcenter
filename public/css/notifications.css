@@ -106,8 +106,14 @@
 .u-italic {
     font-style: italic;
 }
-@media screen and (max-width: 600px) {
+
+@media screen and (max-width: 992px) {
     .Message{
         width: 98%;
+    }
+    #sitemap{
+        float: right;
+        margin: 5px 0;
+        width: 100%;
     }
 }

@@ -44,7 +44,7 @@
                         </form>
                         <form action="{{route('sitemap',$url->domain)}}" method="post">
                             @csrf
-                            <button class="btn btn-sm btn-outline-primary" type="submit">сгенерировать sitemap.xml</button>
+                            <button class="btn btn-sm btn-outline-primary" type="submit" id="sitemap">сгенерировать sitemap.xml</button>
                         </form>
                     </div>
                 </div>

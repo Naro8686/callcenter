@@ -34,7 +34,7 @@ class HomeController extends Controller
     public function index()
     {
         $urls = Url::all()->sortBy('id', false);
-        $contacts = Contact::query()->paginate(10);
+        $contacts = Contact::query()->orderByDesc('status')->paginate(10);
         return view('home', compact('urls', 'contacts'));
     }
 
