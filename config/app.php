@@ -174,6 +174,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        //Excel
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
 
@@ -227,6 +229,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
                 /* Custom Package*/
         'Nexmo' => Nexmo\Laravel\Facade\Nexmo::class,
+        //excel
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

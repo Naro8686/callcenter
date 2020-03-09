@@ -26,4 +26,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('/edit/{id}/domain', 'HomeController@domainEdit')->name('domain.edit');
     Route::post('/seo/{id}/domain', 'HomeController@seoChange')->name('domain.seo');
     Route::post('/site-map/{url}', 'HomeController@siteMap')->name('sitemap');
+    Route::group(['prefix' => 'phone', 'as' => 'phone.'], function () {
+        Route::get('/', 'HomeController@phone')->name('page');
+        Route::post('/upload', 'HomeController@upload')->name('upload');
+    });
 });

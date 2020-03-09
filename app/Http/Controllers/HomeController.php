@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use App\Imports\CallImport;
 use App\Seo;
 use App\Url;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
+use Maatwebsite\Excel\Facades\Excel;
 
 class HomeController extends Controller
 {
@@ -26,6 +29,36 @@ class HomeController extends Controller
         return view('welcome');
     }
 
+    public function phone()
+    {
+        return view('phone');
+    }
+
+    public function upload(Request $request)
+    {
+        $validator = Validator::make(
+            [
+                'file' => $request->file('upload'),
+                'extension' => strtolower($request->file('upload')->getClientOriginalExtension()),
+            ],
+            [
+                'file' => 'required',
+                'extension' => 'required|in:doc,csv,xlsx,xls,docx,ppt,odt,ods,odp',
+            ]
+        );
+
+        try {
+            if ($validator->fails()) {
+                throw new Exception('выбран неправильный формат (doc,csv,xlsx,xls,docx,ppt,odt,ods,odp)');
+            }
+            throw new Exception('Coming soon');//product-i hamar jnjel es toxe
+            Excel::import(new CallImport(), $request->file('upload'));
+        } catch (Exception $exception) {
+            return redirect()->back()->withErrors([$exception->getMessage()]);
+        }
+        return redirect()->back()->with('message', 'файл успешно загружен');
+    }
+
     /**
      * Show the application dashboard.
      *
@@ -40,16 +73,19 @@ class HomeController extends Controller
 
     public function contact(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
             'url' => 'required',
             'name' => 'required|max:100',
             'phone' => 'required|regex:~^(\+7)\(?[489][0-9]{2}\)[0-9]{3}[\s\-][0-9]{2}[\s\-][0-9]{2}$~u',
             'massage' => 'sometimes|max:500',
         ]);
-        if ($validator->fails()) {
+        $domain = Url::query()->pluck('domain')->toArray();
+        $request->merge(['domain' => preg_replace('~^(https://|http://)(.*)(/?)$~i', '$2', $request['url'])]);
+        $request->merge(['phone' => preg_replace('/[^\d]/', '', $request['phone'])]);
+        if ($validator->fails() || !array_search($request['domain'], $domain)) {
             return redirect($request['url'] . "?success=false");
         }
-        $request->merge(['phone' => preg_replace('/[^\d]/', '', $request['phone'])]);
         Contact::query()->create($request->all());
         return redirect($request['url'] . "?success=true");
     }
@@ -81,8 +117,9 @@ class HomeController extends Controller
         $request->validate([
             'domain' => 'required|unique:urls|regex:/^(?!:\/\/)(?=.{1,255}$)((.{1,63}\.){1,127}(?![0-9]*$)[a-z0-9-]+\.?)$/i|max:100'
         ]);
+        $request->merge(['domain' => preg_replace('~^(https://|http://)~i', '', $request['domain'])]);
         Url::query()->create([
-            'domain' => $request->input('domain')
+            'domain' => $request['domain']
         ])->seo()->create([
             'title' => 'title',
         ]);
@@ -93,7 +130,7 @@ class HomeController extends Controller
     {
         try {
             Url::query()->findOrFail($id)->delete();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect('/admin')->withErrors(['error' => $e->getMessage()]);
         }
         return redirect('/admin')->with('message', 'домен удалён');

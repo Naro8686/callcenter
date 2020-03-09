@@ -106,7 +106,11 @@
 .u-italic {
     font-style: italic;
 }
-
+.overflow-y{
+    display: block !important;
+    max-height: 200px !important;
+    overflow-y: auto !important;
+}
 @media screen and (max-width: 992px) {
     .Message{
         width: 98%;
