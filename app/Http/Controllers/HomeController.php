@@ -114,10 +114,10 @@ class HomeController extends Controller
 
     public function domainAdd(Request $request)
     {
+        $request->merge(['domain' => preg_replace('~^(https://|http://)~i', '', $request['domain'])]);
         $request->validate([
             'domain' => 'required|unique:urls|regex:/^(?!:\/\/)(?=.{1,255}$)((.{1,63}\.){1,127}(?![0-9]*$)[a-z0-9-]+\.?)$/i|max:100'
         ]);
-        $request->merge(['domain' => preg_replace('~^(https://|http://)~i', '', $request['domain'])]);
         Url::query()->create([
             'domain' => $request['domain']
         ])->seo()->create([
@@ -139,9 +139,11 @@ class HomeController extends Controller
     public function domainEdit($id, Request $request)
     {
         unset($request['_token']);
+        $request->merge(['domain' => preg_replace('~^(https://|http://)~i', '', $request['domain'])]);
         $request->validate([
             "domain" => "required|unique:urls,domain,{$id}"
         ]);
+
         Url::query()->findOrFail($id)->update(['domain' => $request['domain']]);
         return redirect()->back()->with('message', 'домен изменён');
     }

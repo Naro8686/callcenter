@@ -13,8 +13,8 @@ class Url extends Model
         'yuristy-konsultacia.ru',           //Пенсионный фонд РФ
         'konsultatsiyapro.ru.com',          //Деятельность департамента городского имущества
         'konsultatsiyapro.icu',             //Защита прав граждан в полиции по Москве
-        'konsultatsiyapro.site',            //Роструд: консультация инспектора
-        'konsultatsiyapro.xyz',             //Автоюрист
+        'urist-konsultacia.ru',             //Роструд: консультация инспектора
+        'yur-konsultacia.ru',               //Автоюрист
         'advokat-help.su',                  //Горячая линия налоговой службы ФНС
         'yourist-help.su',                  //ЗАЩИТА СОЦИАЛЬНЫХ ПРАВ ГРАЖДАН
         'yuridicheskayakonsultacia.ru',     //Кадастровые инженеры в Москве и Московской области

@@ -41,7 +41,7 @@
                                 </tr>
                             @empty
                                 <tr class="text-center">
-                                    <th scope="row" colspan="5">пусто</th>
+                                    <th scope="row" colspan="6">пусто</th>
                                 </tr>
                             @endforelse
                             </tbody>
