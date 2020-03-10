@@ -81,7 +81,7 @@ class HomeController extends Controller
             'massage' => 'sometimes|max:500',
         ]);
         $domain = Url::query()->pluck('domain')->toArray();
-        $request->merge(['domain' => preg_replace('~^(https://|http://)(.*)(/?)$~i', '$2', $request['url'])]);
+        $request->merge(['domain' => preg_replace('~^(https://|http://)(.*?)(/?)$~i', '$2', $request['url'])]);
         $request->merge(['phone' => preg_replace('/[^\d]/', '', $request['phone'])]);
         if ($validator->fails() || !array_search($request['domain'], $domain)) {
             return redirect($request['url'] . "?success=false");
@@ -114,9 +114,9 @@ class HomeController extends Controller
 
     public function domainAdd(Request $request)
     {
-        $request->merge(['domain' => preg_replace('~^(https://|http://)~i', '', $request['domain'])]);
+        $request->merge(['domain' => preg_replace('~^(https://|http://)(.*?)(/?)$~i', '$2', $request['domain'])]);
         $request->validate([
-            'domain' => 'required|unique:urls|regex:/^(?!:\/\/)(?=.{1,255}$)((.{1,63}\.){1,127}(?![0-9]*$)[a-z0-9-]+\.?)$/i|max:100'
+            'domain' => 'required|unique:urls,domain|regex:/^(?!:\/\/)(?=.{1,255}$)((.{1,63}\.){1,127}(?![0-9]*$)[a-z0-9-]+\.?)$/i|max:100'
         ]);
         Url::query()->create([
             'domain' => $request['domain']
@@ -139,11 +139,10 @@ class HomeController extends Controller
     public function domainEdit($id, Request $request)
     {
         unset($request['_token']);
-        $request->merge(['domain' => preg_replace('~^(https://|http://)~i', '', $request['domain'])]);
+        $request->merge(['domain' => preg_replace('~^(https://|http://)(.*?)(/?)$~i', '$2', $request['domain'])]);
         $request->validate([
             "domain" => "required|unique:urls,domain,{$id}"
         ]);
-
         Url::query()->findOrFail($id)->update(['domain' => $request['domain']]);
         return redirect()->back()->with('message', 'домен изменён');
     }
