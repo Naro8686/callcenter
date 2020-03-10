@@ -9,16 +9,16 @@ class Url extends Model
     protected $fillable = ['domain'];
 
     protected static $domains = [
-        'konsultatsiyapro.ru',
-        'yuristy-konsultacia.ru',
-        'konsultatsiyapro.ru.com',
-        'konsultatsiyapro.icu',
-        'konsultatsiyapro.site',
-        'konsultatsiyapro.xyz',
-        'xn--80aqeejfehjfmk6b3e5b.ru.com',
-        'xn--80aqeejfehjfmk6b3e5b.xn--p1acf',
-        'xn--80aqeejfehjfmk6b3e5b.xyz',
-        'xn--80aqeejfehjfmk6b3e5b.xn--p1ai'
+        'konsultatsiyapro.ru',              // ДЕПАРТАМЕНТ ЗАЩИТЫ ПРАВ ПОТРЕБИТЕЛЕЙ
+        'yuristy-konsultacia.ru',           //Пенсионный фонд РФ
+        'konsultatsiyapro.ru.com',          //Деятельность департамента городского имущества
+        'konsultatsiyapro.icu',             //Защита прав граждан в полиции по Москве
+        'konsultatsiyapro.site',            //Роструд: консультация инспектора
+        'konsultatsiyapro.xyz',             //Автоюрист
+        'advokat-help.su',                  //Горячая линия налоговой службы ФНС
+        'yourist-help.su',                  //ЗАЩИТА СОЦИАЛЬНЫХ ПРАВ ГРАЖДАН
+        'yuridicheskayakonsultacia.ru',     //Кадастровые инженеры в Москве и Московской области
+        'yurkonsultatsia.ru',               //COMING SOON
     ];
 
     public $timestamps = false;
