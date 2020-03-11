@@ -32,6 +32,7 @@
 }
 
 .Message--red {
+    z-index: 11 !important;
     background-color: #FF4136;
 }
 
