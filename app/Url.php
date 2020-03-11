@@ -11,8 +11,8 @@ class Url extends Model
     protected static $domains = [
         'konsultatsiyapro.ru',              // ДЕПАРТАМЕНТ ЗАЩИТЫ ПРАВ ПОТРЕБИТЕЛЕЙ
         'yuristy-konsultacia.ru',           //Пенсионный фонд РФ
-        'konsultatsiyapro.ru.com',          //Деятельность департамента городского имущества
-        'konsultatsiyapro.icu',             //Защита прав граждан в полиции по Москве
+        'yourist77.ru',                     //Деятельность департамента городского имущества
+        'yourist-moscow.ru',                //Защита прав граждан в полиции по Москве
         'urist-konsultacia.ru',             //Роструд: консультация инспектора
         'yur-konsultacia.ru',               //Автоюрист
         'advokat-help.su',                  //Горячая линия налоговой службы ФНС

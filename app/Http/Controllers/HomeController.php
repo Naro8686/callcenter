@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Call;
 use App\Contact;
 use App\Imports\CallImport;
 use App\Seo;
@@ -31,7 +32,8 @@ class HomeController extends Controller
 
     public function phone()
     {
-        return view('phone');
+        $calls = Call::query()->paginate(20);
+        return view('phone',compact('calls'));
     }
 
     public function upload(Request $request)
@@ -51,7 +53,7 @@ class HomeController extends Controller
             if ($validator->fails()) {
                 throw new Exception('выбран неправильный формат (doc,csv,xlsx,xls,docx,ppt,odt,ods,odp)');
             }
-            throw new Exception('Coming soon');//product-i hamar jnjel es toxe
+            //throw new Exception('Coming soon');//product-i hamar jnjel es toxe
             Excel::import(new CallImport(), $request->file('upload'));
         } catch (Exception $exception) {
             return redirect()->back()->withErrors([$exception->getMessage()]);
