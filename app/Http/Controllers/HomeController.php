@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Call;
 use App\Contact;
+use App\Http\Controllers\Zadarma\ZadarmaController;
 use App\Imports\CallImport;
 use App\Seo;
 use App\Url;
@@ -12,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Maatwebsite\Excel\Facades\Excel;
+
 
 class HomeController extends Controller
 {
@@ -85,7 +87,7 @@ class HomeController extends Controller
         $domain = Url::query()->pluck('domain')->toArray();
         $request->merge(['domain' => preg_replace('~^(https://|http://)(.*?)(/?)$~i', '$2', $request['url'])]);
         $request->merge(['phone' => preg_replace('/[^\d]/', '', $request['phone'])]);
-        if ($validator->fails() || !array_search($request['domain'], $domain)) {
+        if ($validator->fails() || !in_array($request['domain'], $domain)) {
             return redirect($request['url'] . "?success=false");
         }
         Contact::query()->create($request->all());

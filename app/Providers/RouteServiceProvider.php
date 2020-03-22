@@ -41,6 +41,8 @@ class RouteServiceProvider extends ServiceProvider
 
         //Nexmo
         $this->mapNexmoRoutes();
+        //Zadarma
+        $this->mapZadarmaRoutes();
     }
 
     /**
@@ -85,5 +87,13 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware('nexmo')
             ->namespace('App\Http\Controllers\Nexmo')
             ->group(base_path('routes/nexmo.php'));
+    }
+
+    protected function mapZadarmaRoutes()
+    {
+        Route::prefix('zadarma')
+            ->middleware('zadarma')
+            ->namespace('App\Http\Controllers\Zadarma')
+            ->group(base_path('routes/zadarma.php'));
     }
 }

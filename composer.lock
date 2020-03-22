@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bebabff154bda34b69e4a0f6896799e6",
+    "content-hash": "eaa4efdf6cd5d02caf9a9f546aaf56ef",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -4119,6 +4119,51 @@
                 "environment"
             ],
             "time": "2019-09-10T21:37:39+00:00"
+        },
+        {
+            "name": "zadarma/user-api-v1",
+            "version": "v1.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zadarma/user-api-v1.git",
+                "reference": "896f1b1624ffca85e1e7e69b568b274a463235e6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zadarma/user-api-v1/zipball/896f1b1624ffca85e1e7e69b568b274a463235e6",
+                "reference": "896f1b1624ffca85e1e7e69b568b274a463235e6",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Zadarma_API\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Zadarma",
+                    "email": "github@zadarma.com"
+                }
+            ],
+            "description": "PHP class for Zadarma API",
+            "homepage": "https://github.com/zadarma/user-api-v1",
+            "keywords": [
+                "api",
+                "free calls",
+                "pbx",
+                "sip",
+                "zadarma"
+            ],
+            "time": "2019-08-07T08:57:28+00:00"
         },
         {
             "name": "zendframework/zend-diactoros",
