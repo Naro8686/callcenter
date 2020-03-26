@@ -97,7 +97,7 @@ class HomeController extends Controller
     public function siteMap($url)
     {
         if ($curl = curl_init()) {
-            curl_setopt($curl, CURLOPT_URL, "http://{$url}/assets/php/sitemap.php");
+            curl_setopt($curl, CURLOPT_URL, "https://{$url}/assets/php/sitemap.php");
             curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, false);
             $out = curl_exec($curl);
@@ -158,7 +158,7 @@ class HomeController extends Controller
             "title" => "required",
             "keywords" => "sometimes|max:1500",
             "description" => "sometimes|max:1500",
-            "text" => "sometimes|max:1500",
+            "text" => "sometimes|max:1000000",
             "url_id" => "required|exists:urls,id",
         ]);
         Seo::query()->findOrFail($id)->update($request->all());

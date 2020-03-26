@@ -176,6 +176,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         //Excel
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        //ckEditor
+        Unisharp\Ckeditor\ServiceProvider::class,
 
     ],
 

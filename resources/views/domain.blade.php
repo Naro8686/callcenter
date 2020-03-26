@@ -16,21 +16,26 @@
                             <input type="hidden" name="url_id" value="{{$url->id}}">
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Title</label>
-                                <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" id="exampleFormControlInput1" value="{{$url->seo->title}}">
+                                <input type="text" name="title"
+                                       class="form-control @error('title') is-invalid @enderror"
+                                       id="exampleFormControlInput1" value="{{$url->seo->title}}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Description</label>
-                                <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="exampleFormControlTextarea1"
+                                <textarea class="form-control @error('description') is-invalid @enderror"
+                                          name="description" id="exampleFormControlTextarea1"
                                           rows="3">{{$url->seo->description}}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea2">Keywords</label>
-                                <textarea class="form-control @error('keywords') is-invalid @enderror" name="keywords" id="exampleFormControlTextarea2"
+                                <textarea class="form-control @error('keywords') is-invalid @enderror" name="keywords"
+                                          id="exampleFormControlTextarea2"
                                           rows="3">{{$url->seo->keywords}}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea3">Текст для сайта </label>
-                                <textarea class="form-control @error('text') is-invalid @enderror" name="text" id="exampleFormControlTextarea3"
+                                <textarea class="form-control @error('text') is-invalid @enderror" name="text"
+                                          id="exampleFormControlTextarea3"
                                           rows="3">{{$url->seo->text}}</textarea>
                             </div>
                             <div class="btn-group btn-group-sm float-right" role="group" aria-label="Basic example">
@@ -39,12 +44,15 @@
                                         data-target="#exampleModal">изменить url
                                 </button>
                                 <button type="button" class="btn btn-danger" data-toggle="modal"
-                                        data-target="#modalDelete">удалить url</button>
+                                        data-target="#modalDelete">удалить url
+                                </button>
                             </div>
                         </form>
                         <form action="{{route('sitemap',$url->domain)}}" method="post">
                             @csrf
-                            <button class="btn btn-sm btn-outline-primary" type="submit" id="sitemap">сгенерировать sitemap.xml</button>
+                            <button class="btn btn-sm btn-outline-primary" type="submit" id="sitemap">сгенерировать
+                                sitemap.xml
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -89,7 +97,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                       <p>{{$url->domain}}</p>
+                        <p>{{$url->domain}}</p>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-danger">Удалить</button>
@@ -98,4 +106,12 @@
             </form>
         </div>
     </div>
+
 @endsection
+@push('script')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            CKEDITOR.replace('exampleFormControlTextarea3');
+        });
+    </script>
+@endpush
