@@ -1,69 +1,40 @@
 <?php
 
 return [
-
     /*
-    |--------------------------------------------------------------------------
-    | API Credentials
-    |--------------------------------------------------------------------------
-    |
-    | If you're using API credentials, change these settings. Get your
-    | credentials from https://dashboard.nexmo.com | 'Settings'.
-    |
-    */
-
-    'api_key'    => function_exists('env') ? env('ZADARMA_KEY', '0690b591888bd6749279') : '',
-    'api_secret' => function_exists('env') ? env('ZADARMA_SECRET', 'fde6330be40adadd87a1') : '',
-
+      |--------------------------------------------------------------------------
+      | Api Key
+      |--------------------------------------------------------------------------
+      |
+      | The zadarma API key. You can find it or create a new one in the
+      | API authentication tab of the application section in the Zadarma dashboard
+      | https://dashboard.zadarma.me/apps/<YOUR_APP_ID>/auth
+     */
+    'api_key' => env('ZADARMA_API_KEY'),
     /*
-    |--------------------------------------------------------------------------
-    | Signature Secret
-    |--------------------------------------------------------------------------
-    |
-    | If you're using a signature secret, use this section. This can be used
-    | without an `api_secret` for some APIs, as well as with an `api_secret`
-    | for all APIs.
-    |
-    */
-
-    'signature_secret' => function_exists('env') ? env('ZADARMA_SIGNATURE_SECRET', '') : '',
-
+      |--------------------------------------------------------------------------
+      | Api Secret
+      |--------------------------------------------------------------------------
+      |
+      | The zadarma API secret key. You can find it or create a new one in the
+      | API authentication tab of the application section in the Zadarma dashboard
+      | https://dashboard.zadarma.me/apps/<YOUR_APP_ID>/auth
+     */
+    'api_secret' => env('ZADARMA_API_SECRET'),
     /*
-    |--------------------------------------------------------------------------
-    | Private Key
-    |--------------------------------------------------------------------------
-    |
-    | Private keys are used to generate JWTs for authentication. Generation is
-    | handled by the library. JWTs are required for newer APIs, such as voice
-    | and media
-    |
-    */
-
-    'private_key' => function_exists('env') ? env('ZADARMA_PRIVATE_KEY', storage_path('nexmo/private.key')) : '',
-    'application_id' => function_exists('env') ? env('ZADARMA_APPLICATION_ID', '') : '',
-
+      |--------------------------------------------------------------------------
+      | Is Channel Active
+      |--------------------------------------------------------------------------
+      |
+      | Activates or deactivates the Zadarma channel.
+     */
+    'is_channel_active' => (bool) env('ZADARMA_CHANNEL_ACTIVE', true),
     /*
-    |--------------------------------------------------------------------------
-    | Application Identifiers
-    |--------------------------------------------------------------------------
-    |
-    | Add an application name and version here to identify your application when
-    | making API calls
-    |
-    */
-
-    'app' => ['name' => function_exists('env') ? env('ZADARMA_APP_NAME', 'callcenteryur') : 'callcenteryur',
-        'version' => function_exists('env') ? env('ZADARMA_APP_VERSION', '1.1.2') : '1.1.2'],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Client Override
-    |--------------------------------------------------------------------------
-    |
-    | In the event you need to use this with nexmo/client-core, this can be set
-    | to provide a custom HTTP client.
-    |
-    */
-
-    'http_client' => function_exists('env') ? env('ZADARMA_HTTP_CLIENT', '') : '',
+      |--------------------------------------------------------------------------
+      | Request Retries
+      |--------------------------------------------------------------------------
+      |
+      | Specifies the number of retries when receiving a 500 error response.
+     */
+    'request_retries' => env('ZADARMA_REQUEST_RETRIES', 3),
 ];

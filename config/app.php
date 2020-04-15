@@ -1,5 +1,8 @@
 <?php
 
+use Jlorente\Laravel\Zadarma\Facades\Zadarma;
+use Jlorente\Laravel\Zadarma\ZadarmaServiceProvider;
+
 return [
 
     /*
@@ -178,6 +181,8 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         //ckEditor
         Unisharp\Ckeditor\ServiceProvider::class,
+        //zadarma
+        ZadarmaServiceProvider::class,
 
     ],
 
@@ -230,7 +235,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
                 /* Custom Package*/
-        'Nexmo' => Nexmo\Laravel\Facade\Nexmo::class,
+        'Zadarma' => Zadarma::class,
         //excel
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 

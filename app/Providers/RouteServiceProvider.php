@@ -38,9 +38,6 @@ class RouteServiceProvider extends ServiceProvider
        // $this->mapApiRoutes();
 
         $this->mapWebRoutes();
-
-        //Nexmo
-        $this->mapNexmoRoutes();
         //Zadarma
         $this->mapZadarmaRoutes();
     }
@@ -74,20 +71,6 @@ class RouteServiceProvider extends ServiceProvider
              ->group(base_path('routes/api.php'));
     }
 
-    /**
-     * Define the "nexmo" routes for the application.
-     *
-     * These routes are typically stateless.
-     *
-     * @return void
-     */
-    protected function mapNexmoRoutes()
-    {
-        Route::prefix('nexmo')
-            ->middleware('nexmo')
-            ->namespace('App\Http\Controllers\Nexmo')
-            ->group(base_path('routes/nexmo.php'));
-    }
 
     protected function mapZadarmaRoutes()
     {
