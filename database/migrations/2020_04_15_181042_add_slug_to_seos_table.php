@@ -14,7 +14,7 @@ class AddSlugToSeosTable extends Migration
     public function up()
     {
         Schema::table('seos', function (Blueprint $table) {
-            $table->mediumText('slug')->nullable();
+            $table->string('slug')->default('/')->index();
         });
     }
 

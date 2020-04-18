@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Seo extends Model
 {
-    protected $fillable = ['title', 'keywords', 'description', 'text','url_id'];
+    protected $fillable = ['slug','title', 'keywords', 'description', 'text','url_id'];
 
     public function url()
     {

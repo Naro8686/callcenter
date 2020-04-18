@@ -14,7 +14,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UrlSeed::class,
             UserSeed::class,
-            SeoSeeder::class
+            SeoSeeder::class,
+            YurkonsultatsiaUrlSeeder::class
         ]);
     }
 }

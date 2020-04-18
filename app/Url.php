@@ -26,7 +26,7 @@ class Url extends Model
 
     public function seo()
     {
-        return $this->hasOne(Seo::class);
+        return $this->hasMany(Seo::class);
     }
 
     /**

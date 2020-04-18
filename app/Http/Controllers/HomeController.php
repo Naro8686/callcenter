@@ -4,14 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Call;
 use App\Contact;
-use App\Http\Controllers\Zadarma\ZadarmaController;
 use App\Imports\CallImport;
 use App\Seo;
 use App\Url;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -35,7 +34,7 @@ class HomeController extends Controller
     public function phone()
     {
         $calls = Call::query()->paginate(20);
-        return view('phone',compact('calls'));
+        return view('phone', compact('calls'));
     }
 
     public function upload(Request $request)
@@ -109,11 +108,33 @@ class HomeController extends Controller
         return redirect()->back()->withErrors(["errors" => "ошибка"]);
     }
 
-    public function domainShow(int $id)
+    public function domainShow(int $id, Request $request)
     {
+        /**
+         * @var Seo $query
+         */
+        $slug = '/';
         $urls = Url::all()->sortBy('id', false);
         $url = Url::query()->with('seo')->findOrFail($id);
-        return view('domain', compact('url', 'urls'));
+        if (request()->ajax()) {
+            $seoID = $request['seo_id'];
+            $seo = $url->seo->where('id', $seoID)->first();
+            try {
+                $error = false;
+                $response = view("include.seo", compact('url', 'urls', 'seo'))->render();
+            } catch (\Throwable $e) {
+                $error = true;
+                $response = $e->getMessage();
+            }
+            return response()->json(['error' => $error, 'response' => $response]);
+        }
+
+        $seo = $url->seo->where('slug', $slug)->first();
+//        foreach ($url->seo as $key => $seo) {
+//            $slug = explode('/', $seo->slug)[$key] === '' ? [$seo->slug] : explode('/', $seo->slug);
+//        }
+
+        return view('domain', compact('url', 'urls', 'seo'));
     }
 
     public function domainAdd(Request $request)
@@ -163,5 +184,29 @@ class HomeController extends Controller
         ]);
         Seo::query()->findOrFail($id)->update($request->all());
         return redirect()->back()->with('message', 'успешное изменение');
+    }
+
+    public function slugDelete(Request $request)
+    {
+        $request->validate(["slug_id" => "required"]);
+        $slug = Seo::query()->where('id', $request['slug_id'])->where('slug', '<>', '/')->firstOrFail();
+        try {
+            $slug->delete();
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+        return redirect()->back()->with('message', 'slug удалён');
+    }
+
+    public function slugInsert($id, Request $request)
+    {
+        $request->validate(["slug" => "required|string|max:191|regex:~^[a-zA-ZА-Яа-я0-9/]+$~i|unique:seos"]);
+        $title = trim(Str::title(str_replace('/', ' ', $request['slug'])));
+        $slug = trim($request['slug']);
+        Url::query()->findOrFail($id)->seo()->create([
+            'title' => $title,
+            'slug' => $slug
+        ]);
+        return redirect()->back()->with('message', 'slug добавлен ');
     }
 }

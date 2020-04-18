@@ -25,6 +25,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('/delete/{id}/domain', 'HomeController@domainDelete')->name('domain.delete');
     Route::post('/edit/{id}/domain', 'HomeController@domainEdit')->name('domain.edit');
     Route::post('/seo/{id}/domain', 'HomeController@seoChange')->name('domain.seo');
+    Route::delete('/slug/delete', 'HomeController@slugDelete')->name('slug.delete');
+    Route::put('/slug/{id}/insert', 'HomeController@slugInsert')->name('slug.insert');
     Route::post('/site-map/{url}', 'HomeController@siteMap')->name('sitemap');
     Route::group(['prefix' => 'phone', 'as' => 'phone.'], function () {
         Route::get('/', 'HomeController@phone')->name('page');
