@@ -11,7 +11,7 @@ class YurkonsultatsiaUrlSeeder extends Seeder
      */
     public function run()
     {
-        $slugs =[
+        $slugs = [
             'kontakty',
             'ugolovnyy-yurist',
             'avtoyurist',
@@ -33,13 +33,15 @@ class YurkonsultatsiaUrlSeeder extends Seeder
             'novosti/natsionalnaya-medpalata-vstala-na-zashchitu-vracha',
             'novosti/verkhovnyy-sud-razyasnil-pravila-razdela-imushchestva-esli-u-odnogo-iz-suprugov-na-rukakh-ispolnitel',
         ];
-        $url =\App\Url::query()->where('domain','yurkonsultatsia.ru')->first();
-        foreach ($slugs as $slug){
-            \App\Seo::query()->create([
-                'title'=>'Консультант - бесплатная консультация специалиста',
-                'slug'=>$slug,
-                'url_id'=>$url->id,
-            ]);
+        $url = \App\Url::query()->where('domain', 'yurkonsultatsia.ru')->first();
+        if ($url) {
+            foreach ($slugs as $slug) {
+                \App\Seo::query()->create([
+                    'title' => 'Консультант - бесплатная консультация специалиста',
+                    'slug' => $slug,
+                    'url_id' => $url->id,
+                ]);
+            }
         }
     }
 }

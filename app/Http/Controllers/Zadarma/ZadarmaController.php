@@ -6,6 +6,7 @@ use App\Contact;
 use App\Notifications\ZadarmaCallNotfy;
 use DateTime;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 use Jlorente\Laravel\Zadarma\Facades\Zadarma;
 use Jlorente\Laravel\Zadarma\Notifications\Channel\ZadarmaPhoneCallChannel;
@@ -13,6 +14,10 @@ use Jlorente\Laravel\Zadarma\Notifications\Channel\ZadarmaPhoneCallChannel;
 
 class ZadarmaController extends Controller
 {
+    public function zadarma(Request $request){
+       // dd($request->all());
+        if (isset($_GET['zd_echo'])) exit($_GET['zd_echo']);
+    }
     public function event(){
         echo '12345678';
         if (isset($_GET['zd_echo'])) exit($_GET['zd_echo']);

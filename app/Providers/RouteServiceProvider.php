@@ -76,7 +76,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::prefix('zadarma')
             ->middleware('zadarma')
-            ->namespace('App\Http\Controllers\Zadarma')
+            ->namespace("{$this->namespace}\Zadarma")
             ->group(base_path('routes/zadarma.php'));
     }
 }
