@@ -1,5 +1,8 @@
 <?php
 
+use Jlorente\Laravel\Zadarma\Facades\Zadarma;
+use Jlorente\Laravel\Zadarma\ZadarmaServiceProvider;
+
 return [
 
     /*
@@ -67,7 +70,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Europe/Moscow',
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +83,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ru',
 
     /*
     |--------------------------------------------------------------------------
@@ -174,6 +177,12 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        //Excel
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+        //ckEditor
+        Unisharp\Ckeditor\ServiceProvider::class,
+        //zadarma
+        ZadarmaServiceProvider::class,
 
     ],
 
@@ -226,7 +235,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
                 /* Custom Package*/
-        'Nexmo' => Nexmo\Laravel\Facade\Nexmo::class,
+        'Zadarma' => Zadarma::class,
+        //excel
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

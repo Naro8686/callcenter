@@ -1,5 +1,6 @@
 /node_modules
 /public/hot
+/public/.htaccess
 /public/storage
 /storage/*.key
 /vendor
@@ -13,3 +14,5 @@ yarn-error.log
 .idea
 ngrok.exe
 error_log
+app/Http/Controllers/Ami.php
+public/vendor

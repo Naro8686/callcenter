@@ -62,6 +62,8 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         /*Nexmo*/
         'nexmo' => \App\Http\Middleware\Nexmo::class,
+        /*Zadarma*/
+        'zadarma' => \App\Http\Middleware\Zadarma::class,
     ];
 
     /**
